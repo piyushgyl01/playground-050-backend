@@ -8,7 +8,7 @@ async function connectToDb() {
   await mongoose
     .connect(MONGOURI)
     .then(() => {
-      console.log("Connect to DB");
+      console.log("Connected to DB");
     })
     .catch((e) => {
       console.log("Error occured to while connecting to DB");
