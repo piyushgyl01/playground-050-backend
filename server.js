@@ -25,11 +25,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// JWT secrets
 const JWT_SECRET = process.env.JWT_SECRET;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
 
-// Auth middleware function
 function authenticateToken(req, res, next) {
   const accessToken = req.cookies.access_token;
 
@@ -50,7 +48,6 @@ function authenticateToken(req, res, next) {
   }
 }
 
-// Auth helper functions
 function generateTokens(user) {
   const payload = {
     id: user._id,
@@ -268,17 +265,6 @@ app.post("/auth/refresh-token", async (req, res) => {
       .json({ message: "Invalid refresh token", error: error.message });
   }
 });
-
-// async function insertData(data) {
-//   try {
-//     const savedData = await Char.insertMany(data);
-//     console.log(savedData);
-//   } catch (error) {
-//     console.log("Error inserting data", error.message);
-//   }
-// }
-
-// insertData(mockCharacters)
 
 app.get("/chars", async (req, res) => {
   try {
